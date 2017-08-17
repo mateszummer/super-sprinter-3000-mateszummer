@@ -6,9 +6,17 @@
     </head>
     <body>
         <h2><a href="/edit-note">New stuff</a></h2><br>
-        {% for i in range(1,lst+1) %}
-            <a href =reach/{{i}}> Update stuff {{i}}</a><br>
-        {%endfor%}
+            {% for i in range(1,lst+1) %}
+                {% for sublist in lst_real[i-1] %}
+                    {{sublist}} /
+                {%endfor%}
+                <form action=reach/{{i}}>
+                    <input type="submit" value=Update-{{i}} />
+                </form>
+                <form action=delete/{{i}}>
+                    <input type="submit" value=delete-{{i}} />
+                </form>
+            {%endfor%}
         <h2><a href ="/list"> List stuff</a></h2>
     </body>
 </html>

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, request, session
 import csv
+import os
 
 app = Flask(__name__)
 
@@ -18,7 +19,8 @@ def read_csv():
 @app.route('/')
 def route_index():
     lst = len(read_csv())
-    return render_template('index.html', lst=lst)
+    lst_real= read_csv()
+    return render_template('index.html', lst=lst, lst_real=lst_real)
 @app.route('/edit-note')
 def route_edit():
     return render_template('edit.html')
@@ -42,6 +44,21 @@ def route_update_1(post_id):
     for i in range(1,(len(lst))):
         write_or_append_csv("a", lst[i])
     return redirect('/')
+@app.route("/delete/<int:post_id>")
+def route_delete(post_id):
+    lst = read_csv()
+    if len(lst)==1:
+        lst = None
+        filename = "save.csv"
+        f = open(filename, "w+")
+        f.close()
+    else:
+        lst.pop(post_id-1)
+        write_or_append_csv("w",lst[0])
+        for i in range(1,(len(lst))):
+            write_or_append_csv("a", lst[i])
+    return redirect('/')
+
 @app.route("/reach/<int:post_id>")
 def route_reach_1(post_id):
     lst = read_csv()
