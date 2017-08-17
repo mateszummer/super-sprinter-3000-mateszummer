@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Story</title>
+    </head>
+    <body>
+        <h1></h1>
+        <form action={{ page }} method="post">
+            <h1> User Story manager - Add a new Story</h1>
+            <label for="story titles">Story Title</label><br>
+            <textarea name="storytitles" rows="2" cols="60">{{ note[0] }}</textarea><br>
+            <label for="user story">User Story</label><br>
+            <textarea name="userstory" rows="5" cols="60">{{ note[1] }}</textarea><br>
+            <label for="acceptance">Acceptance criteria</label><br>
+            <textarea name="acceptance" rows="6" cols="60">{{ note[2] }}</textarea><br>
+            <label for="Business Value">Business Value</label><br>
+            <input id="BusinessValue" type="number" value="1000" min="100" max="1500" step="100"/><br>
+            <label for="Estimation (h)">Estimation (h)</label><br>
+            <input id="Estimation(h)" type="number" value="2.5" min="0.5" max="40" step="0.5"/><br>
+            <p>Status</p>
+            <select>
+                <option value="Planning">Planning</option>
+                <option value="TODO">TODO</option>
+                <option value="in Progress">in Progress</option>
+                <option value="Review">Review</option>
+                <option value="Done">Done</option>
+            </select>
+            <br><br><br><br>
+            <button type="submit" style="height: 60px; width: 120px">update</button>
+        </form>
+    </body>
+</html>
