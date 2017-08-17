@@ -29,38 +29,22 @@ def route_save():
     lst.append(request.form['acceptance'])
     write_or_append_csv("a", lst)
     return redirect('/')
-@app.route("/update/1", methods=["POST"])
-def route_update_1():
+@app.route("/update/<int:post_id>", methods=["POST"])
+def route_update_1(post_id):
     lst = read_csv()
     temporary_lst = []
     temporary_lst.append(request.form['storytitles'])
     temporary_lst.append(request.form['userstory'])
     temporary_lst.append(request.form['acceptance'])
-    lst[0] = temporary_lst
+    lst[post_id-1] = temporary_lst
     write_or_append_csv("w",lst[0])
     for i in range(1,(len(lst))):
         write_or_append_csv("a", lst[i])
     return redirect('/')
-@app.route("/update/2", methods=["POST"])
-def route_update_2():
+@app.route("/reach/<int:post_id>")
+def route_reach_1(post_id):
     lst = read_csv()
-    temporary_lst = []
-    temporary_lst.append(request.form['storytitles'])
-    temporary_lst.append(request.form['userstory'])
-    temporary_lst.append(request.form['acceptance'])
-    lst[1] = temporary_lst
-    write_or_append_csv("w",lst[0])
-    for i in range(1,(len(lst))):
-        write_or_append_csv("a", lst[i])
-    return redirect('/')
-@app.route("/reach/1")
-def route_reach_1():
-    lst = read_csv()
-    return render_template("reach.html", note = lst[0], page="/update/1")
-@app.route("/reach/2")
-def route_reach_2():
-    lst = read_csv()
-    return render_template("reach.html", note = lst[1], page="/update/2")
+    return render_template("reach.html", note = lst[post_id-1], page="/update/%d"%post_id)
 
 if __name__ == "__main__":
     app.secret_key = 'Scrublord123'
