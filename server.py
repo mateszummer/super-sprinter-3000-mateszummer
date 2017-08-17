@@ -17,7 +17,8 @@ def read_csv():
 
 @app.route('/')
 def route_index():
-    return render_template('index.html')
+    lst = len(read_csv())
+    return render_template('index.html', lst=lst)
 @app.route('/edit-note')
 def route_edit():
     return render_template('edit.html')
@@ -45,6 +46,10 @@ def route_update_1(post_id):
 def route_reach_1(post_id):
     lst = read_csv()
     return render_template("reach.html", note = lst[post_id-1], page="/update/%d"%post_id)
+@app.route("/list")
+def get_list():
+    lst = read_csv()
+    return render_template("list.html", lst=lst)
 
 if __name__ == "__main__":
     app.secret_key = 'Scrublord123'

@@ -5,7 +5,10 @@
         <title>asd</title>
     </head>
     <body>
-        <a href="/edit-note">New stuff</a><br>
-        <a href ="/reach/1"> Update Stuff</a>
+        <h2><a href="/edit-note">New stuff</a></h2><br>
+        {% for i in range(1,lst+1) %}
+            <a href =reach/{{i}}> Update stuff {{i}}</a><br>
+        {%endfor%}
+        <h2><a href ="/list"> List stuff</a></h2>
     </body>
 </html>
