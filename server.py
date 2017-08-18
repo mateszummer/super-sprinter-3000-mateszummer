@@ -69,10 +69,6 @@ def route_delete(post_id):
 def route_reach_1(post_id):
     lst = read_csv()
     return render_template("reach.html", note = lst[post_id-1], page="/update/%d"%post_id)
-@app.route("/list")
-def get_list():
-    lst = read_csv()
-    return render_template("list.html", lst=lst)
 
 if __name__ == "__main__":
     app.secret_key = 'Scrublord123'

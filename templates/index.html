@@ -10,13 +10,9 @@
                 {% for sublist in lst_real[i-1] %}
                     {{sublist}} /
                 {%endfor%}
-                <form action=reach/{{i}}>
-                    <input type="submit" value=Update-{{i}} />
-                </form>
-                <form action=delete/{{i}}>
-                    <input type="submit" value=delete-{{i}} />
-                </form>
+                <a href=/reach/{{i}}>&#x270F;</a>
+                <a href=/delete/{{i}}>&#x2717;</a>
+                <br>
             {%endfor%}
-        <h2><a href ="/list"> List stuff</a></h2>
     </body>
 </html>
