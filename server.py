@@ -24,21 +24,27 @@ def route_index():
 @app.route('/edit-note')
 def route_edit():
     return render_template('edit.html')
-@app.route('/save-note', methods=['POST'])
+@app.route('/save-note', methods=['GET'])
 def route_save():
     lst = []
-    lst.append(request.form['storytitles'])
-    lst.append(request.form['userstory'])
-    lst.append(request.form['acceptance'])
+    lst.append(request.args.get('storytitles'))
+    lst.append(request.args.get('userstory'))
+    lst.append(request.args.get('acceptance'))
+    lst.append(request.args.get('business'))
+    lst.append(request.args.get('estim'))
+    lst.append(request.args.get('status'))
     write_or_append_csv("a", lst)
     return redirect('/')
-@app.route("/update/<int:post_id>", methods=["POST"])
+@app.route("/update/<int:post_id>", methods=["GET"])
 def route_update_1(post_id):
     lst = read_csv()
     temporary_lst = []
-    temporary_lst.append(request.form['storytitles'])
-    temporary_lst.append(request.form['userstory'])
-    temporary_lst.append(request.form['acceptance'])
+    temporary_lst.append(request.args.get('storytitles'))
+    temporary_lst.append(request.args.get('userstory'))
+    temporary_lst.append(request.args.get('acceptance'))
+    temporary_lst.append(request.args.get('business'))
+    temporary_lst.append(request.args.get('estim'))
+    temporary_lst.append(request.args.get('status'))
     lst[post_id-1] = temporary_lst
     write_or_append_csv("w",lst[0])
     for i in range(1,(len(lst))):
