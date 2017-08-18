@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, request, session
 import csv
 import os
+import random
 
 app = Flask(__name__)
 
@@ -64,6 +65,14 @@ def route_delete(post_id):
         for i in range(1,(len(lst))):
             write_or_append_csv("a", lst[i])
     return redirect('/')
+@app.route("/random-meme")
+def random_meme():
+    lst = []
+    with open("memes.csv", "r") as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            lst.append(row)
+    return render_template("meme.html", lst=lst[random.randrange(0,len(lst))])
 
 @app.route("/reach/<int:post_id>")
 def route_reach_1(post_id):
