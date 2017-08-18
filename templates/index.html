@@ -5,14 +5,32 @@
         <title>asd</title>
     </head>
     <body>
-        <h2><a href="/edit-note">New stuff</a></h2><br>
-            {% for i in range(1,lst+1) %}
-                {% for sublist in lst_real[i-1] %}
-                    {{sublist}} /
-                {%endfor%}
-                <a href=/reach/{{i}}>&#x270F;</a>
-                <a href=/delete/{{i}}>&#x2717;</a>
-                <br>
-            {%endfor%}
+        <form action="/edit-note">
+            <button type="submit" style="height: 30px; width: 180px">New Stuff</button><br><br><br><br>
+        </form>
+            {%if lst!=0%}
+                <table border="1">
+                    <tr>
+                        <th>Story Title</th>
+                        <th>User Story</th>
+                        <th>Acceptance criteria</th>
+                        <th>Business Value</th>
+                        <th>Estimation (h)</th>
+                        <th>Status</th>
+                        <th>Update/Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    {% for i in range(1,lst+1) %}
+                        <tr>
+                        {% for sublist in lst_real[i-1] %}
+                            <td>{{sublist}}</td>
+                        {%endfor%}
+                        <td><a href=/reach/{{i}}>&#x270F;</a></td>
+                        <td><a href=/delete/{{i}}>&#x2717;</a></td>
+                        <br>
+                        </tr>
+                    {%endfor%}
+                </table>
+            {%endif%}    
     </body>
 </html>
