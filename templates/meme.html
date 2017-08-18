@@ -8,15 +8,20 @@
         <form action="/">
             <button type="submit" style="height: 30px; width: 180px">Ive had enough of this!</button><br><br>
         </form>
-        <form action="/random-meme">
-            <button type="submit" style="height: 30px; width: 180px">Anotha One</button><br><br><br>
+        {%if page != 51%}
+            <form action=/random-meme/{{ page +1 }}>
+                <button type="submit" style="height: 30px; width: 180px">Next one, Jeeves!</button><br>
+            </form>
+        {%else%}
+            <form action=/random-meme/51>
+                <button type="submit" style="height: 30px; width: 180px">Out of Stock :(</button><br>
+            </form>
+        {%endif%}
+        {%if page != 0%}
+        <form action=/random-meme/{{ page -1 }}>
+            <button type="submit" style="height: 30px; width: 180px">Previous one, Jeeves!</button><br><br><br>
         </form>
+        {%endif%}
         <img src={{ lst[0] }}> <br><br><br>
-        <form action="/">
-            <button type="submit" style="height: 30px; width: 180px">Ive had enough of this!</button><br><br>
-        </form>
-        <form action="/random-meme">
-            <button type="submit" style="height: 30px; width: 180px">Anotha One</button><br><br><br>
-        </form>
     </body>
 </html>

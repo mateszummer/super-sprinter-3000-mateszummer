@@ -65,14 +65,14 @@ def route_delete(post_id):
         for i in range(1,(len(lst))):
             write_or_append_csv("a", lst[i])
     return redirect('/')
-@app.route("/random-meme")
-def random_meme():
+@app.route("/random-meme/<int:post_id>")
+def random_meme(post_id):
     lst = []
     with open("memes.csv", "r") as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             lst.append(row)
-    return render_template("meme.html", lst=lst[random.randrange(0,len(lst))])
+    return render_template("meme.html", lst=lst[post_id], page=post_id)
 
 @app.route("/reach/<int:post_id>")
 def route_reach_1(post_id):
@@ -83,5 +83,5 @@ if __name__ == "__main__":
     app.secret_key = 'Scrublord123'
     app.run(
         debug=True, # Allow verbose error reports
-        port=5006 # Set custom port
+        port=5007 # Set custom port
     )

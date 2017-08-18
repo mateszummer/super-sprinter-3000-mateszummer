@@ -32,7 +32,7 @@
                     {%endfor%}
                 </table>
             {%endif%}
-        <form action="/random-meme">
+        <form action=/random-meme/{{ range(1, 52) | random }}>
             <input type="image" src="https://s-media-cache-ak0.pinimg.com/736x/0c/95/ab/0c95abba54da8bacab5d447e782f6411--obama-not-bad-meme-background.jpg"
             height="300" width="300" border="0" alt="Submit" />
         </form>
